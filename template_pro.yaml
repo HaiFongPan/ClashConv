@@ -1,0 +1,76 @@
+port: 7890
+socks-port: 7891
+allow-lan: false
+mode: Rule
+log-level: info
+experimental:
+  ignore-resolve-fail: true
+external-controller: 127.0.0.1:9090
+
+# ProxyRule节点
+proxies:
+[proxy_config]
+# ProxyRule组策略
+proxy-groups:
+# ProxyRule节点选择
+[proxy_group_configs]
+
+rule-providers:
+  China:
+      type: http
+      behavior: classical
+      path: ./ruleset/direct.yaml
+      url: https://raw.githubusercontent.com/HaiFongPan/SimpleRules/master/clashx/rule-sets/direct.yaml
+      interval: 86400
+  Hijack:
+      type: http
+      behavior: classical
+      path: ./ruleset/hijacks.yaml
+      url: https://raw.githubusercontent.com/HaiFongPan/SimpleRules/master/clashx/rule-sets/hijacks.yaml
+      interval: 86400
+  Apple:
+      type: http
+      behavior: classical
+      path: ./ruleset/apple.yaml
+      url: https://raw.githubusercontent.com/HaiFongPan/SimpleRules/master/clashx/rule-sets/apple.yaml
+      interval: 86400
+  Media:
+      type: http
+      behavior: classical
+      path: ./ruleset/media.yaml
+      url: https://raw.githubusercontent.com/HaiFongPan/SimpleRules/master/clashx/rule-sets/media.yaml
+      interval: 86400
+  Spotify:
+      type: http
+      behavior: classical
+      path: ./ruleset/spotify.yaml
+      url: https://raw.githubusercontent.com/HaiFongPan/SimpleRules/master/clashx/rule-sets/spotify.yaml
+      interval: 86400
+  ProxyRules:
+      type: http
+      behavior: classical
+      path: ./ruleset/proxies.yaml
+      url: https://raw.githubusercontent.com/HaiFongPan/SimpleRules/master/clashx/rule-sets/proxies.yaml
+      interval: 86400
+rules:
+  - RULE-SET, China, DIRECT
+  - RULE-SET, Hijack, Hijack
+  - RULE-SET, Apple, AppleRule
+  - RULE-SET, Spotify, Spotify
+  - RULE-SET, Media, MediaRule
+  - RULE-SET, ProxyRules, ProxyRule
+
+  - DOMAIN,dlercloud.com, DlerRule
+  - DOMAIN,dleris.best, DlerRule
+# Local Area Network
+  - DOMAIN-SUFFIX,local,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT
+  
+  # GeoIP China
+  - GEOIP,CN,DIRECT
+  
+  - MATCH,Blacklist

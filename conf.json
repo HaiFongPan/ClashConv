@@ -1,0 +1,34 @@
+{
+    "active": [
+        "ss-test",
+        "v2ray-test"
+    ],
+    "templatePath": "template_pro.yaml",
+    "targetPath": "target.yaml",
+    "airports": [
+        {
+            "subs": "http://",
+            "proto": "shadowsocks",
+            "name": "ss-test",
+            "includeReg": "iplc",
+            "groups": [
+                {
+                    "reg": "IPLC",
+                    "groupName": "iplc"
+                }
+            ]
+        },
+        {
+            "subs": "http://",
+            "proto": "v2ray",
+            "name": "v2ray-test",
+            "includeReg": "IPLC|XXX",
+            "groups": [
+                {
+                    "reg": "香港",
+                    "groupName": "HK"
+                }
+            ]
+        }
+    ]
+}
