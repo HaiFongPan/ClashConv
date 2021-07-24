@@ -46,6 +46,7 @@ func makeGroups(nodes []string, testUrls []*ProxyGroup) []*ProxyGroup {
 	groups = append(groups, newSelectGroup("AppleRule", testUrls))
 	groups = append(groups, newSelectGroup("MediaRule", testUrls))
 	groups = append(groups, newSelectGroup("DlerRule", testUrls))
+	groups = append(groups, newSelectGroup("GameRule", testUrls))
 	groups = append(groups, newSelectGroup("Spotify", testUrls))
 	groups = append(groups, newSelectGroup("Hijack", testUrls))
 	groups = append(groups, testUrls...)

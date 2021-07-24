@@ -46,6 +46,9 @@ func decodeSs(content, include string, proxyRegs []*ProxyReg) ([]*Ss, []*ProxyGr
 
 		v, _ = url.PathUnescape(v)
 		matchs := re.FindStringSubmatch(v)
+		if len(matchs) == 0 {
+			continue
+		}
 		b64 := prepareBase64(matchs[1])
 		cipherdecode, _ := base64.StdEncoding.DecodeString(b64)
 		cipherstring := strings.Split(string(cipherdecode), ":")

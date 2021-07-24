@@ -52,12 +52,19 @@ rule-providers:
       path: ./ruleset/proxies.yaml
       url: https://raw.githubusercontent.com/HaiFongPan/SimpleRules/master/clashx/rule-sets/proxies.yaml
       interval: 86400
+  Steam:
+      type: http
+      behavior: classical
+      url: https://cdn.jsdelivr.net/gh/lhie1/Rules@master/Clash/Provider/Steam.yaml
+      path: ./Rules/Steam
+      interval: 86400
 rules:
   - RULE-SET, China, DIRECT
   - RULE-SET, Hijack, Hijack
   - RULE-SET, Apple, AppleRule
   - RULE-SET, Spotify, Spotify
   - RULE-SET, Media, MediaRule
+  - RULE-SET, Steam, GameRule
   - RULE-SET, ProxyRules, ProxyRule
 
   - DOMAIN,dlercloud.com, DlerRule
